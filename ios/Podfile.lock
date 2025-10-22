@@ -1,0 +1,94 @@
+PODS:
+  - Adyen (5.20.1):
+    - Adyen/Actions (= 5.20.1)
+    - Adyen/Card (= 5.20.1)
+    - Adyen/Components (= 5.20.1)
+    - Adyen/Core (= 5.20.1)
+    - Adyen/DropIn (= 5.20.1)
+    - Adyen/Encryption (= 5.20.1)
+    - Adyen/Session (= 5.20.1)
+  - Adyen/Actions (5.20.1):
+    - Adyen/Core
+    - Adyen3DS2 (= 2.4.3)
+  - Adyen/Card (5.20.1):
+    - Adyen/Core
+    - Adyen/Encryption
+  - Adyen/CashAppPay (5.20.1):
+    - Adyen/Core
+    - CashAppPayKit (= 0.6.2)
+    - CashAppPayKitUI (= 0.6.2)
+  - Adyen/Components (5.20.1):
+    - Adyen/Core
+    - Adyen/Encryption
+  - Adyen/Core (5.20.1):
+    - AdyenNetworking (= 3.0.1)
+  - Adyen/DropIn (5.20.1):
+    - Adyen/Actions
+    - Adyen/Card
+    - Adyen/Components
+    - Adyen/Core
+    - Adyen/Encryption
+  - Adyen/Encryption (5.20.1)
+  - Adyen/Session (5.20.1):
+    - Adyen/Actions
+    - Adyen/Core
+  - Adyen3DS2 (2.4.3)
+  - adyen_checkout (0.0.1):
+    - Adyen
+    - Flutter
+  - AdyenNetworking (3.0.1)
+  - CashAppPayKit (0.6.2)
+  - CashAppPayKitUI (0.6.2)
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - pay_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Adyen (from `https://github.com/plexypay/plexy-ios.git`, branch `develop`)
+  - Adyen/CashAppPay (from `https://github.com/plexypay/plexy-ios.git`, branch `develop`)
+  - adyen_checkout (from `.symlinks/plugins/adyen_checkout/ios`)
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - pay_ios (from `.symlinks/plugins/pay_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Adyen3DS2
+    - AdyenNetworking
+    - CashAppPayKit
+    - CashAppPayKitUI
+
+EXTERNAL SOURCES:
+  Adyen:
+    :branch: develop
+    :git: https://github.com/plexypay/plexy-ios.git
+  adyen_checkout:
+    :path: ".symlinks/plugins/adyen_checkout/ios"
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  pay_ios:
+    :path: ".symlinks/plugins/pay_ios/ios"
+
+CHECKOUT OPTIONS:
+  Adyen:
+    :commit: c73b3f347a3120d8ed4a6e9a9130940071445461
+    :git: https://github.com/plexypay/plexy-ios.git
+
+SPEC CHECKSUMS:
+  Adyen: 2be434e4fb7bfd98d5f5e2b0b0ab633c49281c10
+  Adyen3DS2: 1973825d24193688a6c85246d8be333d9cb8bc72
+  adyen_checkout: ea1107603f9305c6ce9a241799fb5945a96b1dca
+  AdyenNetworking: eb6196954566a5b3e0c3c56fa12d8d69948603dc
+  CashAppPayKit: 4aae06729a3945d40aaa6aec81959e29601551e7
+  CashAppPayKitUI: d74b5b7ada526755a2e833b824a12607ae8d6bed
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+  pay_ios: 8c7beb9c61d885f3f51b61f75f8793023fc8843a
+
+PODFILE CHECKSUM: 60804a8730872d7b34cb8915f3d4f84de6bf247e
+
+COCOAPODS: 1.16.2
