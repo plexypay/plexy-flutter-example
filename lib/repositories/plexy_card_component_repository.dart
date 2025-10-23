@@ -1,25 +1,25 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_base_repository.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_base_repository.dart';
 
-class AdyenApplePayComponentRepository extends AdyenBaseRepository {
-  AdyenApplePayComponentRepository({
+class PlexyCardComponentRepository extends PlexyBaseRepository {
+  PlexyCardComponentRepository({
     required super.service,
   });
 
   Future<SessionCheckout> createSessionCheckout(
-      ApplePayComponentConfiguration applePayComponentConfiguration) async {
+      CardComponentConfiguration cardComponentConfiguration) async {
     final sessionResponse = await _fetchSession();
-    return await AdyenCheckout.session.create(
+    return await PlexyCheckout.session.create(
       sessionId: sessionResponse["id"],
       sessionData: sessionResponse["sessionData"],
-      configuration: applePayComponentConfiguration,
+      configuration: cardComponentConfiguration,
     );
   }
 
   Future<Map<String, dynamic>> _fetchSession() async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/adyenPayment";
+    returnUrl += "/plexyPayment";
     Map<String, dynamic> sessionRequestBody = <String, dynamic>{
       "merchantAccount": Config.merchantAccount,
       "amount": {
@@ -29,8 +29,13 @@ class AdyenApplePayComponentRepository extends AdyenBaseRepository {
       "returnUrl": returnUrl,
       "reference":
           "flutter-session-test_${DateTime.now().millisecondsSinceEpoch}",
+      "countryCode": Config.countryCode,
+      "shopperLocale": Config.shopperLocale,
       "shopperReference": Config.shopperReference,
       "channel": determineChannel(),
+      "storePaymentMethodMode": "disabled", //enabled, disabled, askForConsent
+      "recurringProcessingModel": "CardOnFile", // Subscription
+      "shopperInteraction": "Ecommerce",
     };
 
     return await service.createSession(sessionRequestBody);
@@ -50,7 +55,7 @@ class AdyenApplePayComponentRepository extends AdyenBaseRepository {
     Map<String, dynamic>? extra,
   ]) async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/applePay";
+    returnUrl += "/plexyPayment";
 
     Map<String, dynamic> paymentsRequestBody = {
       "merchantAccount": Config.merchantAccount,
@@ -66,7 +71,6 @@ class AdyenApplePayComponentRepository extends AdyenBaseRepository {
       "recurringProcessingModel": "CardOnFile",
       "shopperInteraction": "Ecommerce",
       "authenticationData": {
-        "attemptAuthentication": "always",
         "threeDSRequestData": {
           "nativeThreeDS": "preferred",
         },
@@ -78,8 +82,9 @@ class AdyenApplePayComponentRepository extends AdyenBaseRepository {
     return paymentEventHandler.handleResponse(jsonResponse: response);
   }
 
-  Future<PaymentEvent> onAdditionalDetailsMock(
-          Map<String, dynamic> additionalDetailsJson) =>
-      Future.error(
-          "Additional details call is not required for the Apple Pay component.");
+  Future<PaymentEvent> onAdditionalDetails(
+      Map<String, dynamic> additionalDetails) async {
+    final response = await service.postPaymentsDetails(additionalDetails);
+    return paymentEventHandler.handleResponse(jsonResponse: response);
+  }
 }

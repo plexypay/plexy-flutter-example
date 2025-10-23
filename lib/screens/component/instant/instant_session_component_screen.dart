@@ -1,9 +1,9 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_instant_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_instant_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:flutter/material.dart';
 
 class InstantSessionComponentScreen extends StatelessWidget {
@@ -12,25 +12,25 @@ class InstantSessionComponentScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenInstantComponentRepository repository;
+  final PlexyInstantComponentRepository repository;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen instant component')),
+      appBar: AppBar(title: const Text('Plexy instant component')),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 40),
-            _buildAdyenGooglePayAdvancedComponent(),
+            _buildPlexyGooglePayAdvancedComponent(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAdyenGooglePayAdvancedComponent() {
+  Widget _buildPlexyGooglePayAdvancedComponent() {
     final InstantComponentConfiguration instantComponentConfiguration =
         InstantComponentConfiguration(
       environment: Config.environment,
@@ -60,7 +60,7 @@ class InstantSessionComponentScreen extends StatelessWidget {
               const SizedBox(height: 8),
               TextButton(
                   onPressed: () {
-                    AdyenCheckout.session
+                    PlexyCheckout.session
                         .startInstantComponent(
                       configuration: instantComponentConfiguration,
                       paymentMethod: payPalPaymentMethodResponse,
@@ -76,7 +76,7 @@ class InstantSessionComponentScreen extends StatelessWidget {
                   child: const Text("Paypal")),
               TextButton(
                   onPressed: () {
-                    AdyenCheckout.session
+                    PlexyCheckout.session
                         .startInstantComponent(
                       configuration: instantComponentConfiguration,
                       paymentMethod: klarnaPaymentMethodResponse,
@@ -92,7 +92,7 @@ class InstantSessionComponentScreen extends StatelessWidget {
                   child: const Text("Klarna")),
               TextButton(
                   onPressed: () {
-                    AdyenCheckout.session
+                    PlexyCheckout.session
                         .startInstantComponent(
                       configuration: instantComponentConfiguration,
                       paymentMethod: idealPaymentMethodResponse,

@@ -1,11 +1,11 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_apple_pay_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_card_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_google_pay_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_apple_pay_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_card_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_google_pay_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +18,14 @@ class MultiComponentAdvancedScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenCardComponentRepository cardRepository;
-  final AdyenApplePayComponentRepository applePayRepository;
-  final AdyenGooglePayComponentRepository googlePayRepository;
+  final PlexyCardComponentRepository cardRepository;
+  final PlexyApplePayComponentRepository applePayRepository;
+  final PlexyGooglePayComponentRepository googlePayRepository;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Adyen multi component')),
+        appBar: AppBar(title: const Text('Plexy multi component')),
         body: SafeArea(
           child: FutureBuilder<Map<String, dynamic>>(
             future: cardRepository.fetchPaymentMethods(),
@@ -73,7 +73,7 @@ class MultiComponentAdvancedScreen extends StatelessWidget {
       onAdditionalDetails: cardRepository.onAdditionalDetails,
     );
 
-    return AdyenCardComponent(
+    return PlexyCardComponent(
       configuration: cardComponentConfiguration,
       paymentMethod: paymentMethod,
       checkout: advancedCheckout,
@@ -88,15 +88,15 @@ class MultiComponentAdvancedScreen extends StatelessWidget {
       Map<String, dynamic> paymentMethods, BuildContext context) {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return _buildAdyenGooglePayAdvancedComponent(paymentMethods, context);
+        return _buildPlexyGooglePayAdvancedComponent(paymentMethods, context);
       case TargetPlatform.iOS:
-        return _buildAdyenApplePayAdvancedComponent(paymentMethods, context);
+        return _buildPlexyApplePayAdvancedComponent(paymentMethods, context);
       default:
         throw Exception("Unsupported platform");
     }
   }
 
-  Widget _buildAdyenGooglePayAdvancedComponent(
+  Widget _buildPlexyGooglePayAdvancedComponent(
     Map<String, dynamic> paymentMethods,
     BuildContext context,
   ) {
@@ -126,7 +126,7 @@ class MultiComponentAdvancedScreen extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: AdyenGooglePayComponent(
+      child: PlexyGooglePayComponent(
         configuration: googlePayComponentConfiguration,
         paymentMethod: paymentMethod,
         checkout: advancedCheckout,
@@ -141,7 +141,7 @@ class MultiComponentAdvancedScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAdyenApplePayAdvancedComponent(
+  Widget _buildPlexyApplePayAdvancedComponent(
     Map<String, dynamic> paymentMethods,
     BuildContext context,
   ) {
@@ -162,7 +162,7 @@ class MultiComponentAdvancedScreen extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: AdyenApplePayComponent(
+      child: PlexyApplePayComponent(
         configuration: applePayComponentConfiguration,
         paymentMethod: paymentMethod,
         checkout: advancedCheckout,

@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "adyen.submitButton" : {
+    "plexy.submitButton" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {

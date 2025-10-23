@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import adyen_checkout
+@testable import plexy_checkout
 
 class CardValidatorTestss: XCTestCase {
     // Card number validation

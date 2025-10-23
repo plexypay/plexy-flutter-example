@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/network/service.dart';
-import 'package:adyen_checkout_example/utils/payment_event_handler.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/network/service.dart';
+import 'package:plexy_checkout_example/utils/payment_event_handler.dart';
 
-class AdyenBaseRepository {
-  AdyenBaseRepository({
+class PlexyBaseRepository {
+  PlexyBaseRepository({
     required this.service,
   });
 
@@ -15,7 +15,7 @@ class AdyenBaseRepository {
 
   Future<String> determineBaseReturnUrl() async {
     if (Platform.isAndroid) {
-      return await AdyenCheckout.instance.getReturnUrl();
+      return await PlexyCheckout.instance.getReturnUrl();
     } else if (Platform.isIOS) {
       return Config.iOSReturnUrl;
     } else {

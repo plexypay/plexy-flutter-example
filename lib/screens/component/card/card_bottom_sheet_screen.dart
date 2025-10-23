@@ -1,9 +1,9 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_card_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_card_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class CardBottomSheetScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenCardComponentRepository repository;
+  final PlexyCardComponentRepository repository;
   final CardComponentConfiguration cardComponentConfiguration =
       CardComponentConfiguration(
     environment: Config.environment,
@@ -77,7 +77,7 @@ class CardBottomSheetScreen extends StatelessWidget {
                       icon: const Icon(Icons.close),
                     ),
                   ),
-                  AdyenCardComponent(
+                  PlexyCardComponent(
                     configuration: cardComponentConfiguration,
                     paymentMethod: paymentMethod,
                     checkout: advancedCheckout,

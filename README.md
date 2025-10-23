@@ -1,6 +1,6 @@
-# adyen_checkout_example
+# plexy_checkout_example
 
-Demonstrates how to use the adyen_checkout plugin.
+Demonstrates how to use the plexy_checkout plugin.
 
 ## Getting Started
 

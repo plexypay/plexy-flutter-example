@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_drop_in_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_drop_in_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:flutter/material.dart';
 
 class DropInScreen extends StatelessWidget {
@@ -12,12 +12,12 @@ class DropInScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenDropInRepository repository;
+  final PlexyDropInRepository repository;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen Drop-in')),
+      appBar: AppBar(title: const Text('Plexy Drop-in')),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -46,14 +46,14 @@ class DropInScreen extends StatelessWidget {
           await _createDropInConfiguration();
 
       final SessionCheckout sessionCheckout =
-          await AdyenCheckout.session.create(
+          await PlexyCheckout.session.create(
         sessionId: sessionResponse["id"],
         sessionData: sessionResponse["sessionData"],
         configuration: dropInConfiguration,
       );
 
       final PaymentResult paymentResult =
-          await AdyenCheckout.session.startDropIn(
+          await PlexyCheckout.session.startDropIn(
         dropInConfiguration: dropInConfiguration,
         checkout: sessionCheckout,
       );
@@ -80,7 +80,7 @@ class DropInScreen extends StatelessWidget {
         ),
       );
 
-      final paymentResult = await AdyenCheckout.advanced.startDropIn(
+      final paymentResult = await PlexyCheckout.advanced.startDropIn(
         dropInConfiguration: dropInConfiguration,
         paymentMethods: paymentMethodsResponse,
         checkout: advancedCheckout,
@@ -112,7 +112,7 @@ class DropInScreen extends StatelessWidget {
       billingAddressRequired: true,
     );
 
-    //To support CashAppPay please add "pod 'Adyen/CashAppPay'" to your Podfile.
+    //To support CashAppPay please add "pod 'Plexy/CashAppPay'" to your Podfile.
     final String returnUrl = await repository.determineBaseReturnUrl();
     final CashAppPayConfiguration cashAppPayConfiguration =
         CashAppPayConfiguration(

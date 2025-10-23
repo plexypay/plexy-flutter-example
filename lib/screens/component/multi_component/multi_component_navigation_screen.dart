@@ -6,7 +6,7 @@ class MultiComponentNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen multi component')),
+      appBar: AppBar(title: const Text('Plexy multi component')),
       body: SafeArea(
         child: Center(
           child: Column(

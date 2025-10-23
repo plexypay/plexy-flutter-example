@@ -1,11 +1,11 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_apple_pay_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_card_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_google_pay_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_apple_pay_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_card_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_google_pay_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +18,9 @@ class MultiComponentSessionScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenCardComponentRepository cardRepository;
-  final AdyenApplePayComponentRepository applePayRepository;
-  final AdyenGooglePayComponentRepository googlePayRepository;
+  final PlexyCardComponentRepository cardRepository;
+  final PlexyApplePayComponentRepository applePayRepository;
+  final PlexyGooglePayComponentRepository googlePayRepository;
   final cardComponentConfiguration = CardComponentConfiguration(
     environment: Config.environment,
     clientKey: Config.clientKey,
@@ -70,7 +70,7 @@ class MultiComponentSessionScreen extends StatelessWidget {
     final Map<String, dynamic> schemePaymentMethod =
         _extractSchemePaymentMethod(sessionCheckout.paymentMethods);
 
-    return AdyenCardComponent(
+    return PlexyCardComponent(
       configuration: cardComponentConfiguration,
       paymentMethod: schemePaymentMethod,
       checkout: sessionCheckout,
@@ -87,12 +87,12 @@ class MultiComponentSessionScreen extends StatelessWidget {
   ) {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return _buildAdyenGooglePaySessionComponent(
+        return _buildPlexyGooglePaySessionComponent(
           context,
           sessionCheckout,
         );
       case TargetPlatform.iOS:
-        return _buildAdyenApplePaySessionComponent(
+        return _buildPlexyApplePaySessionComponent(
           context,
           sessionCheckout,
         );
@@ -101,7 +101,7 @@ class MultiComponentSessionScreen extends StatelessWidget {
     }
   }
 
-  Widget _buildAdyenGooglePaySessionComponent(
+  Widget _buildPlexyGooglePaySessionComponent(
     BuildContext context,
     SessionCheckout sessionCheckout,
   ) {
@@ -119,7 +119,7 @@ class MultiComponentSessionScreen extends StatelessWidget {
         _extractGooglePayPaymentMethod(sessionCheckout.paymentMethods);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: AdyenGooglePayComponent(
+      child: PlexyGooglePayComponent(
         configuration: googlePayComponentConfiguration,
         paymentMethod: paymentMethod,
         checkout: sessionCheckout,
@@ -134,7 +134,7 @@ class MultiComponentSessionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAdyenApplePaySessionComponent(
+  Widget _buildPlexyApplePaySessionComponent(
     BuildContext context,
     SessionCheckout sessionCheckout,
   ) {
@@ -150,7 +150,7 @@ class MultiComponentSessionScreen extends StatelessWidget {
         _extractApplePayPaymentMethod(sessionCheckout.paymentMethods);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: AdyenApplePayComponent(
+      child: PlexyApplePayComponent(
         configuration: applePayComponentConfiguration,
         paymentMethod: applePayPaymentMethod,
         checkout: sessionCheckout,

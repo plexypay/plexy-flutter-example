@@ -6,7 +6,7 @@ class InstantNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen Instant component')),
+      appBar: AppBar(title: const Text('Plexy Instant component')),
       body: SafeArea(
         child: Center(
           child: Column(

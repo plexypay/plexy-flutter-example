@@ -1,26 +1,26 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_base_repository.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_base_repository.dart';
 
-class AdyenCardComponentRepository extends AdyenBaseRepository {
-  AdyenCardComponentRepository({
+class PlexyGooglePayComponentRepository extends PlexyBaseRepository {
+  PlexyGooglePayComponentRepository({
     required super.service,
   });
 
   Future<SessionCheckout> createSessionCheckout(
-      CardComponentConfiguration cardComponentConfiguration) async {
+      GooglePayComponentConfiguration googlePayComponentConfiguration) async {
     final sessionResponse = await _fetchSession();
-    return await AdyenCheckout.session.create(
+    return await PlexyCheckout.session.create(
       sessionId: sessionResponse["id"],
       sessionData: sessionResponse["sessionData"],
-      configuration: cardComponentConfiguration,
+      configuration: googlePayComponentConfiguration,
     );
   }
 
   Future<Map<String, dynamic>> _fetchSession() async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/adyenPayment";
-    Map<String, dynamic> sessionRequestBody = <String, dynamic>{
+    returnUrl += "/plexyPayment";
+    Map<String, dynamic> sessionRequestBody = {
       "merchantAccount": Config.merchantAccount,
       "amount": {
         "currency": Config.amount.currency,
@@ -33,9 +33,12 @@ class AdyenCardComponentRepository extends AdyenBaseRepository {
       "shopperLocale": Config.shopperLocale,
       "shopperReference": Config.shopperReference,
       "channel": determineChannel(),
-      "storePaymentMethodMode": "disabled", //enabled, disabled, askForConsent
-      "recurringProcessingModel": "CardOnFile", // Subscription
-      "shopperInteraction": "Ecommerce",
+      "authenticationData": {
+        "attemptAuthentication": "always",
+        "threeDSRequestData": {
+          "nativeThreeDS": "preferred",
+        },
+      },
     };
 
     return await service.createSession(sessionRequestBody);
@@ -55,7 +58,7 @@ class AdyenCardComponentRepository extends AdyenBaseRepository {
     Map<String, dynamic>? extra,
   ]) async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/adyenPayment";
+    returnUrl += "/plexyPayment";
 
     Map<String, dynamic> paymentsRequestBody = {
       "merchantAccount": Config.merchantAccount,
@@ -71,6 +74,7 @@ class AdyenCardComponentRepository extends AdyenBaseRepository {
       "recurringProcessingModel": "CardOnFile",
       "shopperInteraction": "Ecommerce",
       "authenticationData": {
+        "attemptAuthentication": "always",
         "threeDSRequestData": {
           "nativeThreeDS": "preferred",
         },

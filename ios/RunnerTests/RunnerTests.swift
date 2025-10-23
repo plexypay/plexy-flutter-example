@@ -1,9 +1,9 @@
-import Adyen
+import Plexy
 import Flutter
 import UIKit
 import XCTest
 
-@testable import adyen_checkout
+@testable import plexy_checkout
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //
@@ -27,14 +27,14 @@ class RunnerTests: XCTestCase {
                 isPartialPaymentSupported: true
             )
 
-            let adyenContext = try dropInConfigurationDTO.createAdyenContext()
+            let plexyContext = try dropInConfigurationDTO.createPlexyContext()
             let dropInConfiguration = try dropInConfigurationDTO.createDropInConfiguration(payment: Payment(amount: Amount(value: 1600, currencyCode: "USD"), countryCode: "US"))
 
-            XCTAssertEqual(adyenContext.apiContext.environment.baseURL, Adyen.Environment.test.baseURL)
-            XCTAssertEqual(adyenContext.apiContext.clientKey, TEST_CLIENT_KEY)
-            XCTAssertEqual(adyenContext.payment?.countryCode, "US")
-            XCTAssertEqual(adyenContext.payment?.amount.currencyCode, "USD")
-            XCTAssertEqual(adyenContext.payment?.amount.value, 1600)
+            XCTAssertEqual(plexyContext.apiContext.environment.baseURL, Plexy.Environment.test.baseURL)
+            XCTAssertEqual(plexyContext.apiContext.clientKey, TEST_CLIENT_KEY)
+            XCTAssertEqual(plexyContext.payment?.countryCode, "US")
+            XCTAssertEqual(plexyContext.payment?.amount.currencyCode, "USD")
+            XCTAssertEqual(plexyContext.payment?.amount.value, 1600)
             XCTAssertEqual(dropInConfiguration.allowPreselectedPaymentView, false)
             XCTAssertEqual(dropInConfiguration.allowsSkippingPaymentList, false)
         } catch {

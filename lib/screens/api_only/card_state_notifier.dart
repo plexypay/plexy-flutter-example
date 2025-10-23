@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_cse_repository.dart';
-import 'package:adyen_checkout_example/screens/api_only/card_state.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_cse_repository.dart';
+import 'package:plexy_checkout_example/screens/api_only/card_state.dart';
 import 'package:flutter/widgets.dart';
 
 class CardStateNotifier extends ValueNotifier<CardState> {
   CardStateNotifier(this.repository) : super(CardState());
 
-  final AdyenCseRepository repository;
+  final PlexyCseRepository repository;
   final formKey = GlobalKey<FormState>();
   final cardDetailsTriggerThreshold = 6;
   Timer? _throttleTimer;
@@ -64,7 +64,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
   Future<CardNumberValidationResult> _validateCardNumberInput(
       String cardNumber) async {
     final CardNumberValidationResult cardNumberValidationResult =
-        await AdyenCheckout.instance.validateCardNumber(
+        await PlexyCheckout.instance.validateCardNumber(
       cardNumber: cardNumber,
       enableLuhnCheck: true,
     );
@@ -87,7 +87,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
     String expiryYear,
   ) async {
     final CardExpiryDateValidationResult cardExpiryDateValidationResult =
-        await AdyenCheckout.instance.validateCardExpiryDate(
+        await PlexyCheckout.instance.validateCardExpiryDate(
       expiryMonth: expiryMonth,
       expiryYear: expiryYear,
     );
@@ -109,7 +109,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
     String brand,
   ) async {
     final CardSecurityCodeValidationResult cardSecurityCodeValidationResult =
-        await AdyenCheckout.instance.validateCardSecurityCode(
+        await PlexyCheckout.instance.validateCardSecurityCode(
       securityCode: securityCode,
       cardBrand: brand,
     );
@@ -140,7 +140,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
     value = value.copyWith(loading: true);
     final EncryptedCard encryptedCard = await _createEncryptedCard();
     final String threeDS2SdkVersion =
-        await AdyenCheckout.instance.getThreeDS2SdkVersion();
+        await PlexyCheckout.instance.getThreeDS2SdkVersion();
     final Map<String, dynamic> paymentsResponse = await repository.payments(
       encryptedCard: encryptedCard,
       threeDS2SdkVersion: threeDS2SdkVersion,
@@ -160,7 +160,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
       expiryYear: value.expiryYear,
       cvc: value.securityCode,
     );
-    return await AdyenCheckout.instance.encryptCard(
+    return await PlexyCheckout.instance.encryptCard(
       unencryptedCard,
       Config.publicKey,
     );
@@ -172,7 +172,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
     }
 
     final unencryptedCard = UnencryptedCard(cardNumber: cardNumber);
-    final encryptedCard = await AdyenCheckout.instance.encryptCard(
+    final encryptedCard = await PlexyCheckout.instance.encryptCard(
       unencryptedCard,
       Config.publicKey,
     );
@@ -194,7 +194,7 @@ class CardStateNotifier extends ValueNotifier<CardState> {
       shopperLocale: Config.shopperLocale,
     );
 
-    final ActionResult actionResult = await AdyenCheckout.instance.handleAction(
+    final ActionResult actionResult = await PlexyCheckout.instance.handleAction(
       actionComponentConfiguration,
       paymentsResponse["action"],
     );

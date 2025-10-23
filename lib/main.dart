@@ -1,48 +1,48 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/network/service.dart';
-import 'package:adyen_checkout_example/repositories/adyen_apple_pay_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_card_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_cse_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_drop_in_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_google_pay_component_repository.dart';
-import 'package:adyen_checkout_example/repositories/adyen_instant_component_repository.dart';
-import 'package:adyen_checkout_example/screens/api_only/card_state_notifier.dart';
-import 'package:adyen_checkout_example/screens/api_only/custom_card_screen.dart';
-import 'package:adyen_checkout_example/screens/component/apple_pay/apple_pay_advanced_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/apple_pay/apple_pay_navigation_screen.dart';
-import 'package:adyen_checkout_example/screens/component/apple_pay/apple_pay_session_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/card/card_advanced_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/card/card_bottom_sheet_screen.dart';
-import 'package:adyen_checkout_example/screens/component/card/card_navigation_screen.dart';
-import 'package:adyen_checkout_example/screens/component/card/card_session_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/google_pay/google_pay_advanced_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/google_pay/google_pay_navigation_screen.dart';
-import 'package:adyen_checkout_example/screens/component/google_pay/google_pay_session_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/instant/instant_advanced_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/instant/instant_navigation_screen.dart';
-import 'package:adyen_checkout_example/screens/component/instant/instant_session_component_screen.dart';
-import 'package:adyen_checkout_example/screens/component/multi_component/multi_component_advanced_screen.dart';
-import 'package:adyen_checkout_example/screens/component/multi_component/multi_component_navigation_screen.dart';
-import 'package:adyen_checkout_example/screens/component/multi_component/multi_component_session_screen.dart';
-import 'package:adyen_checkout_example/screens/drop_in/drop_in_screen.dart';
-import 'package:adyen_checkout_example/utils/provider.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/network/service.dart';
+import 'package:plexy_checkout_example/repositories/plexy_apple_pay_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_card_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_cse_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_drop_in_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_google_pay_component_repository.dart';
+import 'package:plexy_checkout_example/repositories/plexy_instant_component_repository.dart';
+import 'package:plexy_checkout_example/screens/api_only/card_state_notifier.dart';
+import 'package:plexy_checkout_example/screens/api_only/custom_card_screen.dart';
+import 'package:plexy_checkout_example/screens/component/apple_pay/apple_pay_advanced_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/apple_pay/apple_pay_navigation_screen.dart';
+import 'package:plexy_checkout_example/screens/component/apple_pay/apple_pay_session_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/card/card_advanced_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/card/card_bottom_sheet_screen.dart';
+import 'package:plexy_checkout_example/screens/component/card/card_navigation_screen.dart';
+import 'package:plexy_checkout_example/screens/component/card/card_session_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/google_pay/google_pay_advanced_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/google_pay/google_pay_navigation_screen.dart';
+import 'package:plexy_checkout_example/screens/component/google_pay/google_pay_session_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/instant/instant_advanced_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/instant/instant_navigation_screen.dart';
+import 'package:plexy_checkout_example/screens/component/instant/instant_session_component_screen.dart';
+import 'package:plexy_checkout_example/screens/component/multi_component/multi_component_advanced_screen.dart';
+import 'package:plexy_checkout_example/screens/component/multi_component/multi_component_navigation_screen.dart';
+import 'package:plexy_checkout_example/screens/component/multi_component/multi_component_session_screen.dart';
+import 'package:plexy_checkout_example/screens/drop_in/drop_in_screen.dart';
+import 'package:plexy_checkout_example/utils/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   final service = Service();
-  final adyenGooglePayComponentRepository =
-      AdyenGooglePayComponentRepository(service: service);
-  final adyenApplePayComponentRepository =
-      AdyenApplePayComponentRepository(service: service);
-  final adyenCardComponentRepository =
-      AdyenCardComponentRepository(service: service);
-  final adyenInstantComponentRepository =
-      AdyenInstantComponentRepository(service: service);
-  final adyenCseRepository = AdyenCseRepository(service: service);
+  final plexyGooglePayComponentRepository =
+      PlexyGooglePayComponentRepository(service: service);
+  final plexyApplePayComponentRepository =
+      PlexyApplePayComponentRepository(service: service);
+  final plexyCardComponentRepository =
+      PlexyCardComponentRepository(service: service);
+  final plexyInstantComponentRepository =
+      PlexyInstantComponentRepository(service: service);
+  final plexyCseRepository = PlexyCseRepository(service: service);
 
   runApp(MaterialApp(
     localizationsDelegates: const [
@@ -69,56 +69,56 @@ void main() {
     routes: {
       '/': (context) => const MyApp(),
       '/dropInScreen': (context) => DropInScreen(
-            repository: AdyenDropInRepository(service: service),
+            repository: PlexyDropInRepository(service: service),
           ),
       '/cardComponentScreen': (context) => const CardNavigationScreen(),
       '/cardSessionComponentScreen': (context) => CardSessionComponentScreen(
-            repository: adyenCardComponentRepository,
+            repository: plexyCardComponentRepository,
           ),
       '/cardAdvancedComponentScreen': (context) => CardAdvancedComponentScreen(
-            repository: adyenCardComponentRepository,
+            repository: plexyCardComponentRepository,
           ),
       '/cardBottomSheetScreen': (context) => CardBottomSheetScreen(
-            repository: adyenCardComponentRepository,
+            repository: plexyCardComponentRepository,
           ),
       '/googlePayNavigation': (context) => const GooglePayNavigationScreen(),
       '/googlePaySessionComponent': (context) =>
           GooglePaySessionsComponentScreen(
-            repository: adyenGooglePayComponentRepository,
+            repository: plexyGooglePayComponentRepository,
           ),
       '/googlePayAdvancedComponent': (context) =>
           GooglePayAdvancedComponentScreen(
-            repository: adyenGooglePayComponentRepository,
+            repository: plexyGooglePayComponentRepository,
           ),
       '/applePayNavigation': (context) => const ApplePayNavigationScreen(),
       '/applePaySessionComponent': (context) => ApplePaySessionComponentScreen(
-            repository: adyenApplePayComponentRepository,
+            repository: plexyApplePayComponentRepository,
           ),
       '/applePayAdvancedComponent': (context) =>
           ApplePayAdvancedComponentScreen(
-            repository: adyenApplePayComponentRepository,
+            repository: plexyApplePayComponentRepository,
           ),
       '/instantComponentNavigation': (context) =>
           const InstantNavigationScreen(),
       '/instantSessionComponent': (context) => InstantSessionComponentScreen(
-          repository: adyenInstantComponentRepository),
+          repository: plexyInstantComponentRepository),
       '/instantAdvancedComponent': (context) => InstantAdvancedComponentScreen(
-          repository: adyenInstantComponentRepository),
+          repository: plexyInstantComponentRepository),
       '/multiComponentNavigationScreen': (context) =>
           const MultiComponentNavigationScreen(),
       '/multiComponentSessionScreen': (context) => MultiComponentSessionScreen(
-            cardRepository: adyenCardComponentRepository,
-            googlePayRepository: adyenGooglePayComponentRepository,
-            applePayRepository: adyenApplePayComponentRepository,
+            cardRepository: plexyCardComponentRepository,
+            googlePayRepository: plexyGooglePayComponentRepository,
+            applePayRepository: plexyApplePayComponentRepository,
           ),
       '/multiComponentAdvancedScreen': (context) =>
           MultiComponentAdvancedScreen(
-            cardRepository: adyenCardComponentRepository,
-            googlePayRepository: adyenGooglePayComponentRepository,
-            applePayRepository: adyenApplePayComponentRepository,
+            cardRepository: plexyCardComponentRepository,
+            googlePayRepository: plexyGooglePayComponentRepository,
+            applePayRepository: plexyApplePayComponentRepository,
           ),
       '/customCard': (context) => Provider(
-            notifier: CardStateNotifier(adyenCseRepository),
+            notifier: CardStateNotifier(plexyCseRepository),
             child: const CustomCardScreen(),
           ),
     },
@@ -131,7 +131,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AdyenCheckout.instance.enableConsoleLogging(enabled: true);
+    PlexyCheckout.instance.enableConsoleLogging(enabled: true);
 
     return Scaffold(
       appBar: AppBar(

@@ -1,7 +1,7 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/screens/api_only/card_state.dart';
-import 'package:adyen_checkout_example/screens/api_only/card_state_notifier.dart';
-import 'package:adyen_checkout_example/screens/api_only/input_formatters/month_year_input_formatter.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/screens/api_only/card_state.dart';
+import 'package:plexy_checkout_example/screens/api_only/card_state_notifier.dart';
+import 'package:plexy_checkout_example/screens/api_only/input_formatters/month_year_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

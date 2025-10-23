@@ -1,9 +1,9 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_google_pay_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_google_pay_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:flutter/material.dart';
 
 class GooglePaySessionsComponentScreen extends StatelessWidget {
@@ -12,25 +12,25 @@ class GooglePaySessionsComponentScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenGooglePayComponentRepository repository;
+  final PlexyGooglePayComponentRepository repository;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen google pay component')),
+      appBar: AppBar(title: const Text('Plexy google pay component')),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 40),
-            _buildAdyenGooglePaySessionComponent()
+            _buildPlexyGooglePaySessionComponent()
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAdyenGooglePaySessionComponent() {
+  Widget _buildPlexyGooglePaySessionComponent() {
     final GooglePayComponentConfiguration googlePayComponentConfiguration =
         GooglePayComponentConfiguration(
       environment: Config.environment,
@@ -56,7 +56,7 @@ class GooglePaySessionsComponentScreen extends StatelessWidget {
                 "Session flow",
               ),
               const SizedBox(height: 8),
-              AdyenGooglePayComponent(
+              PlexyGooglePayComponent(
                 configuration: googlePayComponentConfiguration,
                 paymentMethod: paymentMethod,
                 checkout: sessionCheckout,

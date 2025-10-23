@@ -1,25 +1,26 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_base_repository.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_base_repository.dart';
 
-class AdyenGooglePayComponentRepository extends AdyenBaseRepository {
-  AdyenGooglePayComponentRepository({
+class PlexyInstantComponentRepository extends PlexyBaseRepository {
+  PlexyInstantComponentRepository({
     required super.service,
   });
 
   Future<SessionCheckout> createSessionCheckout(
-      GooglePayComponentConfiguration googlePayComponentConfiguration) async {
+      InstantComponentConfiguration instantComponentConfiguration) async {
     final sessionResponse = await _fetchSession();
-    return await AdyenCheckout.session.create(
+    return await PlexyCheckout.session.create(
       sessionId: sessionResponse["id"],
       sessionData: sessionResponse["sessionData"],
-      configuration: googlePayComponentConfiguration,
+      configuration: instantComponentConfiguration,
     );
   }
 
   Future<Map<String, dynamic>> _fetchSession() async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/adyenPayment";
+    returnUrl += "/plexyPayment";
+
     Map<String, dynamic> sessionRequestBody = {
       "merchantAccount": Config.merchantAccount,
       "amount": {
@@ -39,6 +40,19 @@ class AdyenGooglePayComponentRepository extends AdyenBaseRepository {
           "nativeThreeDS": "preferred",
         },
       },
+      "lineItems": [
+        {
+          "quantity": 1,
+          "amountExcludingTax": 331,
+          "taxPercentage": 2100,
+          "description": "Shoes",
+          "id": "Item #1",
+          "taxAmount": 69,
+          "amountIncludingTax": 400,
+          "productUrl": "URL_TO_PURCHASED_ITEM",
+          "imageUrl": "URL_TO_PICTURE_OF_PURCHASED_ITEM",
+        },
+      ],
     };
 
     return await service.createSession(sessionRequestBody);
@@ -58,7 +72,7 @@ class AdyenGooglePayComponentRepository extends AdyenBaseRepository {
     Map<String, dynamic>? extra,
   ]) async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/adyenPayment";
+    returnUrl += "/plexyPayment";
 
     Map<String, dynamic> paymentsRequestBody = {
       "merchantAccount": Config.merchantAccount,
@@ -79,6 +93,19 @@ class AdyenGooglePayComponentRepository extends AdyenBaseRepository {
           "nativeThreeDS": "preferred",
         },
       },
+      "lineItems": [
+        {
+          "quantity": 1,
+          "amountExcludingTax": 331,
+          "taxPercentage": 2100,
+          "description": "Shoes",
+          "id": "Item #1",
+          "taxAmount": 69,
+          "amountIncludingTax": 400,
+          "productUrl": "URL_TO_PURCHASED_ITEM",
+          "imageUrl": "URL_TO_PICTURE_OF_PURCHASED_ITEM",
+        },
+      ],
     };
 
     paymentsRequestBody.addAll(data);

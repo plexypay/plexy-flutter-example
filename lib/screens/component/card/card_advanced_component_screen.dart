@@ -1,9 +1,9 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_card_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_card_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class CardAdvancedComponentScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenCardComponentRepository repository;
+  final PlexyCardComponentRepository repository;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CardAdvancedComponentScreen extends StatelessWidget {
     );
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Adyen card component')),
+        appBar: AppBar(title: const Text('Plexy card component')),
         body: SafeArea(
           child: FutureBuilder<Map<String, dynamic>>(
             future: repository.fetchPaymentMethods(),
@@ -70,7 +70,7 @@ class CardAdvancedComponentScreen extends StatelessWidget {
       onAdditionalDetails: repository.onAdditionalDetails,
     );
 
-    return AdyenCardComponent(
+    return PlexyCardComponent(
       configuration: cardComponentConfiguration,
       paymentMethod: paymentMethod,
       checkout: advancedCheckout,

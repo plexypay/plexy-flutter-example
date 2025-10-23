@@ -1,9 +1,9 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_base_repository.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_base_repository.dart';
 
-class AdyenDropInRepository extends AdyenBaseRepository {
-  AdyenDropInRepository({required super.service});
+class PlexyDropInRepository extends PlexyBaseRepository {
+  PlexyDropInRepository({required super.service});
 
   //A session should not being created from the mobile application.
   //Please provide a CheckoutSession object from your own backend.

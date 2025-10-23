@@ -1,16 +1,16 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_base_repository.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_base_repository.dart';
 
-class AdyenCseRepository extends AdyenBaseRepository {
-  AdyenCseRepository({required super.service});
+class PlexyCseRepository extends PlexyBaseRepository {
+  PlexyCseRepository({required super.service});
 
   Future<Map<String, dynamic>> payments({
     required EncryptedCard encryptedCard,
     String? threeDS2SdkVersion,
   }) async {
     String returnUrl = await determineBaseReturnUrl();
-    returnUrl += "/adyenPayment";
+    returnUrl += "/plexyPayment";
     final requestBody = <String, Object>{
       "amount": {"currency": "EUR", "value": 10000},
       "reference": "flutter-test_${DateTime.now().millisecondsSinceEpoch}",

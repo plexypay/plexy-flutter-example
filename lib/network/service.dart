@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
 
-import 'package:adyen_checkout_example/config.dart';
+import 'package:plexy_checkout_example/config.dart';
 import 'package:http/http.dart' as http;
 
 class Service {
@@ -219,6 +219,6 @@ class Service {
 
   void _log(String message) {
     // Use developer.log for full messages without truncation
-    developer.log(message, name: 'AdyenCheckout');
+    developer.log(message, name: 'PlexyCheckout');
   }
 }

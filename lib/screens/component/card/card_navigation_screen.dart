@@ -15,7 +15,7 @@ class _CardNavigationScreenState extends State<CardNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen card component')),
+      appBar: AppBar(title: const Text('Plexy card component')),
       body: SafeArea(
         child: Center(
           child: Column(

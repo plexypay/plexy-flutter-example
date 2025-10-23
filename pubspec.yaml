@@ -1,5 +1,5 @@
-name: adyen_checkout_example
-description: Demonstrates how to use the adyen_checkout plugin.
+name: plexy_checkout_example
+description: Demonstrates how to use the plexy_checkout plugin.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -10,8 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  adyen_checkout:
-    path: ../
+  plexy_checkout: 1.6.1
   http: ^1.2.0
   collection: ^1.18.0
   flutter_localizations:

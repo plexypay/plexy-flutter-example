@@ -1,4 +1,4 @@
-package com.adyen.checkout.flutter.example
+package com.plexy.checkout.flutter.example
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

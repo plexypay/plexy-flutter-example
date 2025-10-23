@@ -1,6 +1,6 @@
-import 'package:adyen_checkout_example/screens/api_only/card_state_notifier.dart';
-import 'package:adyen_checkout_example/screens/api_only/card_widget.dart';
-import 'package:adyen_checkout_example/utils/provider.dart';
+import 'package:plexy_checkout_example/screens/api_only/card_state_notifier.dart';
+import 'package:plexy_checkout_example/screens/api_only/card_widget.dart';
+import 'package:plexy_checkout_example/utils/provider.dart';
 import 'package:flutter/material.dart';
 
 class CustomCardScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class CustomCardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen custom card')),
+      appBar: AppBar(title: const Text('Plexy custom card')),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

@@ -16,11 +16,11 @@
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
 
-    <!-- Defining a custom theme that uses the AdyenCheckout theme as a parent for customizing components  -->
-    <style name="MyCustomTheme" parent="AdyenCheckout" />
+    <!-- Defining a custom theme that uses the PlexyCheckout theme as a parent for customizing components  -->
+    <style name="MyCustomTheme" parent="PlexyCheckout" />
 
-    <!--  Overriding the "AdyenCheckout" theme for customizing Drop-In UI  -->
-    <style name="AdyenCheckout" parent="Theme.MaterialComponents.DayNight">
+    <!--  Overriding the "PlexyCheckout" theme for customizing Drop-In UI  -->
+    <style name="PlexyCheckout" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorOnPrimary">@color/color_on_primary</item>
         <item name="colorAccent">@color/color_accent</item>
@@ -30,16 +30,16 @@
         <item name="colorSurface">@color/color_background</item>
         <item name="android:textColor">@color/color_primary</item>
         <item name="android:textColorPrimary">@color/color_primary</item>
-        <item name="bottomSheetDialogTheme">@style/AdyenCheckout.BottomSheetDialogTheme</item>
+        <item name="bottomSheetDialogTheme">@style/PlexyCheckout.BottomSheetDialogTheme</item>
     </style>
 
     <!--  Customize specific view elements  -->
-    <style name="AdyenCheckout.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="PlexyCheckout.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/text_input_stroke_selector</item>
         <item name="android:minHeight">@dimen/input_layout_height</item>
     </style>
 
-    <style name="AdyenCheckout.Button.Colored" parent="AdyenCheckout.Button.Primary">
+    <style name="PlexyCheckout.Button.Colored" parent="PlexyCheckout.Button.Primary">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/primary_button_height</item>
         <item name="android:layout_marginStart">@dimen/standard_margin</item>

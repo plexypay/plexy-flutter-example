@@ -1,4 +1,4 @@
-import 'package:adyen_checkout/adyen_checkout.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
 
 class PaymentEventHandler {
   //Response keys

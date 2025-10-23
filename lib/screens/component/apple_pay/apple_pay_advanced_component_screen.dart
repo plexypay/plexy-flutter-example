@@ -1,9 +1,9 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:adyen_checkout/adyen_checkout.dart';
-import 'package:adyen_checkout_example/config.dart';
-import 'package:adyen_checkout_example/repositories/adyen_apple_pay_component_repository.dart';
-import 'package:adyen_checkout_example/utils/dialog_builder.dart';
+import 'package:plexy_checkout/plexy_checkout.dart';
+import 'package:plexy_checkout_example/config.dart';
+import 'package:plexy_checkout_example/repositories/plexy_apple_pay_component_repository.dart';
+import 'package:plexy_checkout_example/utils/dialog_builder.dart';
 import 'package:flutter/material.dart';
 
 class ApplePayAdvancedComponentScreen extends StatelessWidget {
@@ -12,19 +12,19 @@ class ApplePayAdvancedComponentScreen extends StatelessWidget {
     super.key,
   });
 
-  final AdyenApplePayComponentRepository repository;
+  final PlexyApplePayComponentRepository repository;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adyen Apple Pay component')),
+      appBar: AppBar(title: const Text('Plexy Apple Pay component')),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 40),
-              _buildAdyenApplePayAdvancedComponent(),
+              _buildPlexyApplePayAdvancedComponent(),
             ],
           ),
         ),
@@ -32,7 +32,7 @@ class ApplePayAdvancedComponentScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAdyenApplePayAdvancedComponent() {
+  Widget _buildPlexyApplePayAdvancedComponent() {
     final ApplePayComponentConfiguration applePayComponentConfiguration =
         ApplePayComponentConfiguration(
       environment: Config.environment,
@@ -60,7 +60,7 @@ class ApplePayAdvancedComponentScreen extends StatelessWidget {
                 "Advanced flow",
               ),
               const SizedBox(height: 8),
-              AdyenApplePayComponent(
+              PlexyApplePayComponent(
                 configuration: applePayComponentConfiguration,
                 paymentMethod: paymentMethod,
                 checkout: advancedCheckout,

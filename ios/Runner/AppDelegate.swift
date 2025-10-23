@@ -2,8 +2,8 @@ import Adyen
 import Flutter
 import UIKit
 
-#if canImport(adyen_checkout)
-    import adyen_checkout
+#if canImport(plexy_checkout)
+    import plexy_checkout
 #endif
 
 #if canImport(AdyenActions)
